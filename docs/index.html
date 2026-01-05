@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coastal Leadership Coaching — Preview</title>
+  <style>
+    :root {
+      --teal-700: #0f766e;
+      --teal-600: #0d9488;
+      --cyan-500: #06b6d4;
+      --gray-50: #f9fafb;
+      --gray-100:#f3f4f6;
+      --gray-500:#6b7280;
+      --gray-700:#374151;
+      --ring:#e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: #111827;
+      background: white;
+    }
+    a { color: inherit; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 18px; border-radius: 18px;
+      background: var(--teal-600); color: white; text-decoration: none;
+      font-weight: 600; box-shadow: 0 10px 20px rgba(0,0,0,.12);
+    }
+    .btn:hover { background: #14b8a6; }
+    .btn.white {
+      background: white; color: var(--teal-700);
+    }
+    .btn.white:hover { background: var(--gray-100); }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: end;
+      text-align: left;
+      padding: 40px 0;
+      color: white;
+      position: relative;
+    }
+    #background-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    #background-container img,
+    #background-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero .portrait {
+      width: 160px; height: 160px; border-radius: 999px;
+      border: 4px solid rgba(255,255,255,.9);
+      object-fit: cover;
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 4.5vw, 64px);
+      line-height: 1.05;
+      margin: 10px 0 0;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      margin: 18px 0 0;
+      max-width: 720px;
+      font-size: clamp(16px, 1.6vw, 20px);
+      opacity: .95;
+    }
+    .hero .cta { margin-top: 26px; display:flex; justify-content:flex-start; }
+    /* SECTION */
+    .section { padding: 80px 0; }
+    .section.gray { background: var(--gray-50); }
+    .section h2 {
+      font-size: clamp(28px, 3vw, 44px);
+      margin: 0 0 12px;
+      text-align: left;
+      letter-spacing: -0.02em;
+    }
+    .section .sub {
+      text-align:left;
+      color: var(--gray-700);
+      margin: 0 0 34px;
+    }
+    /* TESTIMONIALS */
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    @media (max-width: 900px) {
+      .grid.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .grid.cols-3 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      border: 1px solid var(--ring);
+      box-shadow: 0 12px 24px rgba(17,24,39,.06);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .avatar {
+      width: 128px; height: 128px; border-radius: 999px;
+      object-fit: cover;
+      border: 4px solid var(--teal-600);
+      box-shadow: 0 10px 18px rgba(0,0,0,.12);
+      filter: brightness(.95);
+      margin-bottom: 14px;
+    }
+    .quote { font-style: italic; margin: 0 0 14px; color: #111827; }
+    .name { font-weight: 700; color: var(--teal-600); margin: 0; }
+    .title { margin: 4px 0 0; color: var(--gray-500); font-size: 13px; }
+    /* CTA */
+    .ctaBlock {
+      color: white;
+      background: linear-gradient(90deg, var(--teal-600), var(--cyan-500));
+      text-align: left;
+      padding: 80px 0;
+    }
+    .ctaBlock p {
+      max-width: 700px; margin: 14px auto 26px; opacity: .95;
+    }
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    @media (max-width: 1024px) {
+      .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--ring);
+      background: #fff;
+    }
+    .tile img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+      transition: transform .25s ease;
+      filter: brightness(.97);
+    }
+    .tile:hover img { transform: scale(1.04); }
+    .cap {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 10px 10px 9px;
+      font-size: 13px;
+      color: white;
+      background: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,0));
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .tile:hover .cap { opacity: 1; }
+    footer {
+      background: var(--gray-100);
+      color: var(--gray-500);
+      text-align: left;
+      padding: 26px 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div id="background-container"></div>
+    <div class="container">
+      <img class="portrait" src="uploads/IMG_1206.JPEG" alt="Jeff Williamson portrait" />
+      <h1>Empowering Leaders to Unlock Potential</h1>
+      <p>Coastal Leadership Coaching helps individuals and organizations elevate their leadership, inspire teams, and create lasting impact.</p>
+      <div class="cta">
+        <a class="btn" href="https://calendly.com/coastalleadershipcoaching/discovery-call" target="_blank" rel="noreferrer">
+          Book a Discovery Call
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section gray">
+    <div class="container">
+      <h2>What Clients Say</h2>
+      <p class="sub">Testimonials (with circular thumbnails) in the same layout as your React mock.</p>
+
+      <div class="grid cols-3">
+        <div class="card">
+          <img class="avatar" src="uploads/IMG_0034.jpeg" alt="Testimonial thumbnail" />
+          <p class="quote">“The anecdotes are not just entertaining; they resonate with the everyday experiences that we all encounter in our lives.”</p>
+          <p class="name">Sheena</p>
+          <p class="title">Review of Still Marinating</p>
+        </div>
+
+        <div class="card">
+          <img class="avatar" src="uploads/IMG_0482.JPEG" alt="Testimonial thumbnail" />
+          <p class="quote">“It makes everything so relatable as you read through this book.”</p>
+          <p class="name">Shawnee</p>
+          <p class="title">Review of The Other Side of the Coin</p>
+        </div>
+
+        <div class="card">
+          <img class="avatar" src="uploads/IMG_0525.JPEG" alt="Testimonial thumbnail" />
+          <p class="quote">“Jeff comes with thoughtful questions and he really listens to me.”</p>
+          <p class="name">Sarah</p>
+          <p class="title">Using CLC since Feb. 2024</p>
+        </div>
+
+        <div class="card">
+          <img class="avatar" src="uploads/IMG_0650.JPEG" alt="Testimonial thumbnail" />
+          <p class="quote">“I am accomplishing more than I ever thought I could.”</p>
+          <p class="name">Nico</p>
+          <p class="title">Using CLC since Feb. 2024</p>
+        </div>
+
+        <div class="card">
+          <img class="avatar" src="uploads/IMG_0775.JPEG" alt="Testimonial thumbnail" />
+          <p class="quote">“If you want some practical tips on how to live life more fully, more engaged, more future-minded, then you’ve found the right book.”</p>
+          <p class="name">Chip H.</p>
+          <p class="title">Review of Still Marinating</p>
+        </div>
+
+        <div class="card">
+          <img class="avatar" src="uploads/IMG_1346.JPEG" alt="Testimonial thumbnail" />
+          <p class="quote">“An inspiring leader who brings his passion for growth to everyone he meets.”</p>
+          <p class="name">New Testimonial</p>
+          <p class="title">Event Guest</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ctaBlock">
+    <div class="container">
+      <h2>Ready to Elevate Your Leadership?</h2>
+      <p>Let’s build a coaching journey that aligns with your goals and inspires transformation.</p>
+      <a class="btn white" href="https://calendly.com/coastalleadershipcoaching/discovery-call" target="_blank" rel="noreferrer">
+        Book a Discovery Call
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Book Tour &amp; Gallery</h2>
+      <p class="sub">Hover an image to reveal the caption.</p>
+
+      <div class="gallery">
+        <!-- order matches the canvas list -->
+        <div class="tile"><img src="uploads/IMG_0034.jpeg" alt="Book poster moment" /><div class="cap">Book poster moment</div></div>
+        <div class="tile"><img src="uploads/IMG_0476.JPEG" alt="Conference hallway" /><div class="cap">Conference hallway</div></div>
+        <div class="tile"><img src="uploads/IMG_0482.JPEG" alt="Book handoff" /><div class="cap">Book handoff</div></div>
+        <div class="tile"><img src="uploads/IMG_0486.JPEG" alt="Event meet and greet" /><div class="cap">Event meet and greet</div></div>
+        <div class="tile"><img src="uploads/IMG_0524.JPEG" alt="Signing table" /><div class="cap">Signing table</div></div>
+        <div class="tile"><img src="uploads/IMG_0525.JPEG" alt="Signing table close" /><div class="cap">Signing table close</div></div>
+        <div class="tile"><img src="uploads/IMG_0650.JPEG" alt="Audience selfie" /><div class="cap">Audience selfie</div></div>
+        <div class="tile"><img src="uploads/IMG_0651.JPEG" alt="Cafe portrait" /><div class="cap">Cafe portrait</div></div>
+        <div class="tile"><img src="uploads/IMG_0775.JPEG" alt="Event floor" /><div class="cap">Event floor</div></div>
+        <div class="tile"><img src="uploads/IMG_0776.JPEG" alt="Event floor alt" /><div class="cap">Event floor alt</div></div>
+        <div class="tile"><img src="uploads/IMG_0781.JPEG" alt="Backstage stairs" /><div class="cap">Backstage stairs</div></div>
+        <div class="tile"><img src="uploads/IMG_0782.JPEG" alt="Stage-side conversation" /><div class="cap">Stage-side conversation</div></div>
+        <div class="tile"><img src="uploads/IMG_1059.JPEG" alt="Airport meetup" /><div class="cap">Airport meetup</div></div>
+        <div class="tile"><img src="uploads/IMG_1062.JPEG" alt="Another airport moment" /><div class="cap">Another airport moment</div></div>
+        <div class="tile"><img src="uploads/IMG_1197.JPEG" alt="Books close-up" /><div class="cap">Books close-up</div></div>
+        <div class="tile"><img src="uploads/IMG_1206.JPEG" alt="Bookstore shelf" /><div class="cap">Bookstore shelf</div></div>
+        <div class="tile"><img src="uploads/IMG_1346.JPEG" alt="Event guest snapshot" /><div class="cap">Event guest snapshot</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Coastal Leadership Coaching. All rights reserved.</footer>
+
+  <script>
+    const container = document.getElementById('background-container');
+    const video = document.createElement('video');
+    video.src = 'uploads/rotationimages/IMG_0486.MOV';
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = false;
+    container.appendChild(video);
+  </script>
+</body>
+</html>
